@@ -228,17 +228,17 @@ contract Exchange {
             tokens[_tokenGive][msg.sender] +
             _amountGive;
 
-            emit Trade(
-                _orderId,
-                msg.sender,
-                _tokenGet,
-                _amountGet,
-                _tokenGive,
-                _amountGive,
-                _user,
-                block.timestamp
-                    );
-
+        // Emit trade event
+        emit Trade(
+            _orderId,
+            msg.sender,
+            _tokenGet,
+            _amountGet,
+            _tokenGive,
+            _amountGive,
+            _user,
+            block.timestamp
+        );
     }
 
 }
