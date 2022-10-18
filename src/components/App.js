@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import config from '../config.json';
 
+
 import {
   loadProvider,
   loadNetwork,
@@ -17,6 +18,7 @@ import Markets from './Markets'
 import Balance from './Balance'
 import Order from './Order'
 import PriceChart from './PriceChart'
+import Trades from './Trades'
 import OrderBook from './OrderBook'
 
 
@@ -86,7 +88,7 @@ function App() {
 
           {/* Transactions */}
 
-          {/* Trades */}
+          <Trades />
 
           <OrderBook />
 
