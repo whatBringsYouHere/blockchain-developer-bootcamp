@@ -91,7 +91,7 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
       }
 
     // ------------------------------------------------------------------------------
-    // BALANCE CASES
+    // ORDERS LOADED (CANCELLED, FILLED, & ALL)
 
     case 'CANCELLED_ORDERS_LOADED':
       return{
@@ -120,6 +120,53 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
           data: action.allOrders
         }
       }
+
+    // ------------------------------------------------------------------------------
+    // CANCELLING ORDERS
+
+      case 'ORDER_CANCEL_REQUEST':
+        return{
+          ...state,
+          transaction: {
+           transactionType: 'Cancel',
+           isPending: true,
+           isSuccessful: false
+        }
+      }
+
+
+      case 'ORDER_CANCEL_SUCCESS':
+        return{
+          ...state,
+          transaction: {
+           transactionType: 'Cancel',
+           isPending: false,
+           isSuccessful: true
+        },
+        cancelledOrders:{
+          ...state.cancelledOrders,
+          data: [
+            ...state.cancelledOrders.data,
+            action.order
+          ]
+        },
+        events:[action.event, ...state.events]
+      }
+
+        case 'ORDER_CANCEL_REQUEST':
+         return{
+           ...state,
+            transaction: {
+             transactionType: 'Cancel',
+             isPending: false,
+             isSuccessful: false,
+             isError: true
+        }
+      }
+
+
+
+
 
 
 
