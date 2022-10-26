@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import config from '../config.json';
 
-
 import {
   loadProvider,
   loadNetwork,
@@ -21,8 +20,7 @@ import PriceChart from './PriceChart'
 import Transactions from './Transactions'
 import Trades from './Trades'
 import OrderBook from './OrderBook'
-
-
+import Alert from './Alert'
 
 function App() {
   const dispatch = useDispatch()
@@ -56,8 +54,6 @@ function App() {
     // Fetch all orders: open, filled, cancelled
     loadAllOrders(provider, exchange, dispatch)
 
-
-
     // Listen to events
     subscribeToEvents(exchange, dispatch)
   }
@@ -83,11 +79,9 @@ function App() {
         </section>
         <section className='exchange__section--right grid'>
 
+          <PriceChart />
 
-
-           <PriceChart />
-
-            <Transactions />
+          <Transactions />
 
           <Trades />
 
@@ -96,7 +90,7 @@ function App() {
         </section>
       </main>
 
-      {/* Alert */}
+      <Alert />
 
     </div>
   );
